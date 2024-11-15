@@ -24,7 +24,7 @@ class EventManager extends Manager {
         return res.concat(b.data);
     }
 
-    async getEvent(id: number) {
+    async getEventByID(id: number) {
         const { data, error } = await this.db
             .from("events")
             .select("*")

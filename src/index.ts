@@ -16,6 +16,6 @@ export class Client {
         this.#APIUrl = APIUrl;
         this.level = new LevelManager(this.db, this.#APIUrl);
         this.player = new PlayerManager(this.db, this.#APIUrl);
-        this.event = new EventManager(this.db, this.#APIUrl)
+        this.event = new EventManager(this.db, this.#APIUrl);
     }
 }
