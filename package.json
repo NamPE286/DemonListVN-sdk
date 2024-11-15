@@ -1,5 +1,5 @@
 {
-  "name": "demon-list-vn-sdk",
+  "name": "demonlistvn-sdk",
   "version": "1.0.0",
   "description": "Demon List VN SDK",
   "main": "./dist/index.js",
