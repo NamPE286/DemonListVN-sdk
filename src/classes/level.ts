@@ -1,13 +1,17 @@
 import { TLevel } from "../types";
 
+/* eslint-disable */
 interface Level extends TLevel {}
 
 class Level {
+    /* eslint-enable */
+
     APIUrl: string;
 
     constructor(APIUrl: string, data: TLevel) {
         Object.assign(this, data);
         this.APIUrl = APIUrl;
+        console.log(this.APIUrl);
     }
 
     async pull(): Promise<Level> {
@@ -15,15 +19,11 @@ class Level {
             throw new Error('Missing "id" property');
         }
 
-        try {
-            const data = await (
-                await fetch(`${this.APIUrl}/level/${this.id}`)
-            ).json();
+        const data = await (
+            await fetch(`${this.APIUrl}/level/${this.id}`)
+        ).json();
 
-            return new Level(this.APIUrl, data);
-        } catch (err) {
-            throw err;
-        }
+        return new Level(this.APIUrl, data);
     }
 }
 

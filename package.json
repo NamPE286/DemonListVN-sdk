@@ -12,7 +12,8 @@
         "build": "tsup",
         "typegen": "supabase gen types typescript --project-id qdwpenfblwdmhywwszzj > type/database.types.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
-        "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
+        "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
+        "lint": "npx eslint ./src"
     },
     "author": "NamPE",
     "license": "ISC",
