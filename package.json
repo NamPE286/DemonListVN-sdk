@@ -1,6 +1,6 @@
 {
     "name": "demonlistvn-sdk",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Demon List VN SDK",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
@@ -10,7 +10,7 @@
     ],
     "scripts": {
         "build": "tsup",
-        "typegen": "supabase gen types typescript --project-id qdwpenfblwdmhywwszzj > type/database.types.ts",
+        "typegen": "supabase gen types typescript --project-id qdwpenfblwdmhywwszzj > src/types/database.types.ts",
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
         "lint": "npx eslint ./src"
