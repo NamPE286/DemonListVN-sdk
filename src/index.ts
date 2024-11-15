@@ -1,17 +1,18 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import Level from "./classes/level";
+import type { Database } from "./types/database.types";
+import LevelManager from "./classes/LevelManager";
+import PlayerManager from "./classes/PlayerManager";
 
 export class Client {
-    db: SupabaseClient;
-    APIUrl: string;
-
-    async getLevel(id: number): Promise<Level> {
-        const level = new Level(this.APIUrl, { id: id });
-        return level.pull();
-    }
+    #db: SupabaseClient<Database>;
+    #APIUrl: string;
+    level: LevelManager;
+    player: PlayerManager;
 
     constructor(dbUrl: string, dbKey: string, APIUrl: string) {
-        this.db = createClient(dbUrl, dbKey);
-        this.APIUrl = APIUrl;
+        this.#db = createClient<Database>(dbUrl, dbKey);
+        this.#APIUrl = APIUrl;
+        this.level = new LevelManager(this.#db, this.#APIUrl);
+        this.player = new PlayerManager(this.#db, this.#APIUrl);
     }
 }
