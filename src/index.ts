@@ -5,7 +5,7 @@ export class Client {
     db: SupabaseClient;
     APIUrl: string;
 
-    async getLevel(id: number) {
+    async getLevel(id: number): Promise<Level> {
         const level = new Level(this.APIUrl, { id: id });
         return level.pull();
     }

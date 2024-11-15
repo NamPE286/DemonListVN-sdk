@@ -10,7 +10,7 @@ class Level {
         this.APIUrl = APIUrl;
     }
 
-    async pull() {
+    async pull(): Promise<Level> {
         if (!this.id) {
             throw new Error('Missing "id" property');
         }

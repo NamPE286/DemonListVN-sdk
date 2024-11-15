@@ -53,7 +53,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             changelogs: {
@@ -88,7 +88,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "levels";
                         referencedColumns: ["id"];
-                    },
+                    }
                 ];
             };
             clanBan: {
@@ -121,7 +121,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             clanInvitations: {
@@ -157,7 +157,7 @@ export type Database = {
                         isOneToOne: true;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             clans: {
@@ -210,7 +210,7 @@ export type Database = {
                         isOneToOne: true;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             deathCount: {
@@ -239,7 +239,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             eventProofs: {
@@ -278,7 +278,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             events: {
@@ -343,7 +343,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             levelDeathCount: {
@@ -441,7 +441,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             players: {
@@ -542,7 +542,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "clans";
                         referencedColumns: ["id"];
-                    },
+                    }
                 ];
             };
             playersAchievement: {
@@ -578,7 +578,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             PVPPlayers: {
@@ -611,7 +611,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "PVPRooms";
                         referencedColumns: ["id"];
-                    },
+                    }
                 ];
             };
             PVPRooms: {
@@ -649,7 +649,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             records: {
@@ -731,7 +731,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
             userSocial: {
@@ -766,7 +766,7 @@ export type Database = {
                         isOneToOne: false;
                         referencedRelation: "players";
                         referencedColumns: ["uid"];
-                    },
+                    }
                 ];
             };
         };
@@ -803,7 +803,7 @@ export type Tables<
     }
         ? keyof (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
               Database[PublicTableNameOrOptions["schema"]]["Views"])
-        : never = never,
+        : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
     ? (Database[PublicTableNameOrOptions["schema"]]["Tables"] &
           Database[PublicTableNameOrOptions["schema"]]["Views"])[TableName] extends {
@@ -829,7 +829,7 @@ export type TablesInsert<
         schema: keyof Database;
     }
         ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-        : never = never,
+        : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
     ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
           Insert: infer I;
@@ -852,7 +852,7 @@ export type TablesUpdate<
         schema: keyof Database;
     }
         ? keyof Database[PublicTableNameOrOptions["schema"]]["Tables"]
-        : never = never,
+        : never = never
 > = PublicTableNameOrOptions extends { schema: keyof Database }
     ? Database[PublicTableNameOrOptions["schema"]]["Tables"][TableName] extends {
           Update: infer U;
@@ -873,7 +873,7 @@ export type Enums<
         | { schema: keyof Database },
     EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
         ? keyof Database[PublicEnumNameOrOptions["schema"]]["Enums"]
-        : never = never,
+        : never = never
 > = PublicEnumNameOrOptions extends { schema: keyof Database }
     ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
     : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
@@ -888,7 +888,7 @@ export type CompositeTypes<
         schema: keyof Database;
     }
         ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
-        : never = never,
+        : never = never
 > = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
     ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
     : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
