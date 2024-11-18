@@ -1,8 +1,8 @@
-import Manager from "./Manager";
+import { supabase } from "..";
 
-class LevelManager extends Manager {
+class LevelManager {
     async getLevelByID(id: number) {
-        const { data, error } = await this.db
+        const { data, error } = await supabase
             .from("levels")
             .select("*")
             .eq("id", id)

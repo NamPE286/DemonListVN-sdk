@@ -1,9 +1,9 @@
-import Manager from "./Manager";
+import { supabase } from "..";
 
-class EventManager extends Manager {
+class EventManager {
     async getOngoingEvents() {
         const cur = new Date().toISOString();
-        const a = await this.db
+        const a = await supabase
             .from("events")
             .select("*")
             .lte("start", cur)
@@ -15,7 +15,7 @@ class EventManager extends Manager {
         }
 
         const res = a.data;
-        const b = await this.db.from("events").select("*").is("end", null);
+        const b = await supabase.from("events").select("*").is("end", null);
 
         if (b.error) {
             throw b.error;
@@ -25,7 +25,7 @@ class EventManager extends Manager {
     }
 
     async getEventByID(id: number) {
-        const { data, error } = await this.db
+        const { data, error } = await supabase
             .from("events")
             .select("*")
             .eq("id", id)
@@ -40,7 +40,7 @@ class EventManager extends Manager {
     }
 
     async getEventProof(eventID: number, uid: string) {
-        const { data, error } = await this.db
+        const { data, error } = await supabase
             .from("eventProofs")
             .select("*")
             .match({ eventID: eventID, userid: uid })
@@ -58,7 +58,7 @@ class EventManager extends Manager {
         eventID: number | null,
         { start = 0, end = 50, accepted = "true" } = {}
     ) {
-        let query = this.db
+        let query = supabase
             .from("eventProofs")
             .select("*, events(*), players(*)");
 

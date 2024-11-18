@@ -1,8 +1,8 @@
-import Manager from "./Manager";
+import { supabase } from "..";
 
-class PlayerManager extends Manager {
+class PlayerManager {
     async getPlayerByUID(uid: string) {
-        const { data, error } = await this.db
+        const { data, error } = await supabase
             .from("players")
             .select("*, clanData:clans!id(*)")
             .eq("uid", uid)

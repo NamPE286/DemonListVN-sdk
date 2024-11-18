@@ -1,21 +1,25 @@
-import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { createClient as cc, SupabaseClient } from "@supabase/supabase-js";
 import type { Database } from "./types/database.types";
 import LevelManager from "./classes/LevelManager";
 import PlayerManager from "./classes/PlayerManager";
 import EventManager from "./classes/EventManager";
 
-export class Client {
-    #APIUrl: string;
-    db: SupabaseClient<Database>;
+export let supabase: SupabaseClient<Database>;
+export let APIUrl: string;
+
+class Client {
     level: LevelManager;
     player: PlayerManager;
     event: EventManager;
 
-    constructor(dbUrl: string, dbKey: string, APIUrl: string) {
-        this.db = createClient<Database>(dbUrl, dbKey);
-        this.#APIUrl = APIUrl;
-        this.level = new LevelManager(this.db, this.#APIUrl);
-        this.player = new PlayerManager(this.db, this.#APIUrl);
-        this.event = new EventManager(this.db, this.#APIUrl);
+    constructor() {
+        this.level = new LevelManager();
+        this.player = new PlayerManager();
+        this.event = new EventManager();
     }
+}
+
+export function createClient(dbUrl: string, dbKey: string, apiurl: string) {
+    supabase = cc<Database>(dbUrl, dbKey);
+    APIUrl = apiurl;
 }
