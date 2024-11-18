@@ -2,6 +2,8 @@ import { supabase } from "..";
 import { Tables } from "../types/database.types";
 import { EventProofManager } from "./eventProof";
 
+const events = new EventProofManager();
+
 export type TEvent = Tables<"events">;
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
@@ -13,7 +15,7 @@ export class Event {
     }
 
     async getProof(uid: string) {
-        return new EventProofManager().get(this.id, uid);
+        return events.get(this.id, uid);
     }
 }
 
