@@ -10,7 +10,8 @@ export default tseslint.config(
     "rules": {
       "@typescript-eslint/no-unused-vars": "warn",
       "no-empty": "warn",
-      "no-unused-private-class-members": "warn"
+      "no-unused-private-class-members": "warn",
+      "@typescript-eslint/no-unsafe-declaration-merging": "off"
     }
   }
 );
