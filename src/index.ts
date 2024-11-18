@@ -8,6 +8,7 @@ export let supabase: SupabaseClient<Database>;
 export let APIUrl: string;
 
 class Client {
+    auth = supabase.auth
     events = new EventManager();
     players = new PlayerManager();
     levels = new LevelManager();
