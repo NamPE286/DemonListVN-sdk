@@ -26,7 +26,7 @@ export class Auth {
         return data.session?.access_token;
     }
 
-    async getUser({ force = false }) {
+    async getUser({ force = false } = {}) {
         if (force || this.cachedUser === undefined) {
             this.cachedUser = await players.get(
                 (await this.getUserMetadata()).user.id
