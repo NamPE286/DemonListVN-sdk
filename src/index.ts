@@ -15,9 +15,16 @@ class Client {
     levels = new LevelManager();
 }
 
+let instance: Client | undefined = undefined;
+
 export function createClient(dbUrl: string, dbKey: string, apiurl: string) {
+    if (instance !== undefined) {
+        return instance;
+    }
+
     supabase = cc<Database>(dbUrl, dbKey);
     APIUrl = apiurl;
+    instance = new Client();
 
-    return new Client();
+    return instance;
 }
