@@ -13,13 +13,13 @@ export class Auth extends SupabaseAuthClient {
         const { data, error } = await this.getSession();
 
         if (error) {
-            return undefined;
+            return null;
         }
 
         const userId = data.session?.user.id;
 
         if (!userId) {
-            return undefined;
+            return null;
         }
 
         return await players.get(userId);
