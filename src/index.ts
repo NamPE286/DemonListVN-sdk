@@ -4,6 +4,7 @@ import { LevelManager } from "./classes/level";
 import { EventManager } from "./classes/event";
 import { PlayerManager } from "./classes/player";
 import { Auth } from "./classes/auth";
+import { EventProofManager } from "./classes/eventProof";
 
 export let supabase: SupabaseClient<Database>;
 export let APIUrl: string;
@@ -13,9 +14,10 @@ class Client {
     events = new EventManager();
     players = new PlayerManager();
     levels = new LevelManager();
+    eventProofs = new EventProofManager();
 }
 
-export let client: Client | undefined = undefined;
+export let client: Client;
 
 export function createClient(dbUrl: string, dbKey: string, apiurl: string) {
     if (client !== undefined) {

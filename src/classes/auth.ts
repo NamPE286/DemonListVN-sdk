@@ -1,7 +1,5 @@
 import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
-import { PlayerManager } from "./player";
-
-const players = new PlayerManager();
+import { client } from "..";
 
 export class Auth extends SupabaseAuthClient {
     constructor(obj: SupabaseAuthClient) {
@@ -22,6 +20,6 @@ export class Auth extends SupabaseAuthClient {
             return null;
         }
 
-        return await players.get(userId);
+        return await client.players.get(userId);
     }
 }
