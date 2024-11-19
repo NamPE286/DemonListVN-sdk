@@ -1,5 +1,6 @@
 import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
 import { client } from "..";
+import { APIUrl } from "..";
 import { Player } from "./player";
 
 export class Auth extends SupabaseAuthClient {
@@ -27,6 +28,27 @@ export class Auth extends SupabaseAuthClient {
             return null;
         }
 
-        return await client.players.get(userId);
+        try {
+            return await client.players.get(userId);
+        } catch {
+            const { data, error } = await this.getUser();
+
+            if (error) {
+                throw error;
+            }
+
+            await fetch(`${APIUrl}/player`, {
+                method: "PUT",
+                body: JSON.stringify({
+                    name: data.user.user_metadata.full_name
+                }),
+                headers: {
+                    Authorization: `Bearer ${(await this.getSession()).data.session?.access_token}`,
+                    "Content-Type": "application/json"
+                }
+            });
+
+            return await client.players.get(userId);
+        }
     }
 }
