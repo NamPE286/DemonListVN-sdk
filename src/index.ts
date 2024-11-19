@@ -5,6 +5,7 @@ import { EventManager } from "./classes/event";
 import { PlayerManager } from "./classes/player";
 import { Auth } from "./classes/auth";
 import { EventProofManager } from "./classes/eventProof";
+import { NotificationManager } from "./classes/notification";
 
 export let supabase: SupabaseClient<Database>;
 export let APIUrl: string;
@@ -15,6 +16,7 @@ class Client {
     players = new PlayerManager();
     levels = new LevelManager();
     eventProofs = new EventProofManager();
+    notifications = new NotificationManager();
 }
 
 export let client: Client;
