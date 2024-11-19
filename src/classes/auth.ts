@@ -1,55 +1,27 @@
-import { supabase } from "..";
-import { Player, PlayerManager } from "./player";
+import { SupabaseAuthClient } from "@supabase/supabase-js/dist/module/lib/SupabaseAuthClient";
+import { PlayerManager } from "./player";
 
 const players = new PlayerManager();
 
-export class Auth {
-    private cachedUser: Player | undefined;
+export class Auth extends SupabaseAuthClient {
+    constructor(obj: SupabaseAuthClient) {
+        super({});
+        Object.assign(this, obj);
+    }
 
-    async getUserMetadata() {
-        const { data, error } = await supabase.auth.getUser();
+    async getUserData() {
+        const { data, error } = await this.getSession();
 
         if (error) {
-            throw error;
+            return undefined;
         }
 
-        return data;
-    }
+        const userId = data.session?.user.id;
 
-    async token() {
-        const { data, error } = await supabase.auth.getSession();
-
-        if (error) {
-            throw error;
+        if (!userId) {
+            return undefined;
         }
 
-        return data.session?.access_token;
-    }
-
-    async getUser({ force = false } = {}) {
-        if (force || this.cachedUser === undefined) {
-            this.cachedUser = await players.get(
-                (await this.getUserMetadata()).user.id
-            );
-        }
-
-        return this.cachedUser;
-    }
-
-    signInWithGoogle() {
-        supabase.auth.signInWithOAuth({
-            provider: "google",
-            options: {
-                queryParams: {
-                    access_type: "offline",
-                    prompt: "consent"
-                },
-                redirectTo: window.location.origin
-            }
-        });
-    }
-
-    signOut() {
-        supabase.auth.signOut();
+        return await players.get(userId);
     }
 }

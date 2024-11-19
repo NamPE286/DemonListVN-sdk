@@ -1,6 +1,6 @@
 {
     "name": "demonlistvn-sdk",
-    "version": "1.0.8",
+    "version": "1.0.9",
     "description": "Demon List VN SDK",
     "main": "./dist/index.js",
     "module": "./dist/index.mjs",
